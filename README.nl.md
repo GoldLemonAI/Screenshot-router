@@ -55,6 +55,12 @@ Start één sessie als inbox, bijvoorbeeld "Screenshot inbox", en zet hem vast i
 
 De skills zelf zijn in het Engels geschreven. Claude volgt ze ook als je in het Nederlands chat, en de router neemt tekst over in de taal waarin hij op de screenshot staat.
 
+## Automatische modus
+
+Wil je screenshots niet steeds zelf delen? Je telefoon kan elke nieuwe screenshot in een Google Drive-map zetten, en een geplande taak in je inbox-chat kijkt daar elk uur in. De router slaat privé-screenshots over (bank, inlogcodes, appjes met familie), stuurt de rest door en verplaatst elke screenshot naar een map "Verwerkt", zodat niets twee keer gaat.
+
+Je hebt een Android-telefoon met een sync-app nodig, de Google Drive-connector in Claude en een geplande taak in je inbox-chat. Stap voor stap: [docs/automatische-inbox.md](docs/automatische-inbox.md).
+
 ## Beperkingen
 
 - Alleen Claude Code-sessies kunnen screenshots ontvangen. Gewone claude.ai-chats en Projects zijn niet bereikbaar.
@@ -62,13 +68,15 @@ De skills zelf zijn in het Engels geschreven. Claude volgt ze ook als je in het 
 - Van een video krijg je alleen wat in dat ene beeld te zien is.
 - Bevestigingen komen als berichten binnen in de inbox-chat; je ziet ze de volgende keer dat je die chat opent.
 - Chats die op je eigen computer draaien (Remote Control) pakken een screenshot pas op als die computer aan staat. De router controleert dat vóór het versturen en vraagt je wat je wilt als zo'n chat offline is.
-- Er gebeurt niets vanzelf als je een screenshot maakt. Je deelt hem zelf in de inbox-chat.
+- Zonder automatische modus gebeurt er niets vanzelf als je een screenshot maakt; je deelt hem zelf in de inbox-chat.
+- Geef elke chat die screenshots ontvangt dezelfde permissiemodus als de inbox-chat. Anders kan een binnenkomend bericht in de ontvangende chat op goedkeuring wachten en verlopen.
 
 ## Bestanden
 
 | Bestand | Wat het doet |
 |---|---|
 | `.claude-plugin/` | Plugin- en marketplace-manifest |
+| `docs/automatische-inbox.md` | Handleiding voor de automatische modus |
 | `skills/screenshot-router/SKILL.md` | Lezen, routeren, het overdrachtsbericht, bevestigingen en teruggestuurde screenshots |
 | `skills/screenshot-router/routes.example.md` | Voorbeeldroutes; je eigen routes staan in `.claude/screenshot-routes.md` |
 | `skills/screenshot-handler/SKILL.md` | Hoe een ontvangende chat beslist en terugmeldt |

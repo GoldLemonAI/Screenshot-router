@@ -89,6 +89,21 @@ One line, nothing more:
 
 > Sent to **LinkedIn content**: infographic with 245 reactions, good format to adapt.
 
+## Automatic mode: the Drive inbox
+
+Optional. The user's phone uploads every new screenshot to a Google Drive folder, and a scheduled Routine fires into this chat with a message like "Check de screenshot-inbox" or "Check the screenshot inbox". Setup steps for the user are in `docs/automatische-inbox.md` in the plugin repository.
+
+The folder IDs are in the `## drive-inbox` section of the routes file (`inbox folder` and `done folder`). If that section is missing, tell the user automatic mode is not set up and point them to the setup guide. When the routine fires:
+
+1. Use the Google Drive connector. `search_files` with `parentId = '<inbox folder>' and mimeType contains 'image/'`. These are the unprocessed screenshots (the done folder is excluded because its files have another parent).
+2. If there are none, end the turn with one short line ("Geen nieuwe screenshots."). Do not message anyone.
+3. For each file, oldest first: read it with `read_file_content`. That gives the text on the image plus labels; use it as the transcription in step 1 above. Add the Drive link (`viewUrl`) to the handoff as `Original image:` so the destination chat can open it.
+4. **Skip private screenshots.** Every screenshot on the phone ends up here, not only work. Do not route anything that is clearly personal or sensitive: bank and payment screens, login or 2FA codes, passwords, medical information, private chats with family or friends, personal photos, tickets and receipts that have nothing to do with work. Move those to the done folder without sending, and count them as skipped. When in doubt whether something is work, skip it and list it in the summary so the user can forward it by hand.
+5. Route the rest as in steps 2 and 3 above, including the online check. In automatic mode there is nobody to answer `AskUserQuestion`: if you are unsure between two routes, pick the higher one in the routes file and say so in the summary; if the destination is offline, send anyway (it waits) and say so in the summary.
+6. After a file is sent or skipped, move it with `update_file` (`parentId = '<done folder>'`). Move it only after the send succeeded, so a failed send is retried on the next run.
+7. If the Google Drive tools are not available in this chat, say so in one line and stop; do not guess.
+8. End with a short summary: per screenshot one line with where it went, plus the number skipped as private. If more than 10 are waiting, handle the 10 oldest and leave the rest for the next run.
+
 ## Receipts
 
 Each destination chat sends back a line starting with `[Screenshot handled]`. When one arrives, pass it on to the user in one line ("SEO chat filed the reel as a risk to watch"). Do not reply to the destination chat.

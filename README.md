@@ -53,6 +53,12 @@ Copy `skills/screenshot-router/routes.example.md` to `.claude/screenshot-routes.
 
 Start one session as your inbox, for example "Screenshot inbox", and pin it in the Claude app on your phone. Share a screenshot from your phone into that chat. No text needed; add a note if you want something specific.
 
+## Automatic mode
+
+Don't want to share each screenshot by hand? Your phone can upload every new screenshot to a Google Drive folder, and a scheduled task in your inbox chat checks that folder every hour. The router skips private screenshots (banking, login codes, family chats), routes the rest, and moves each file to a "done" folder so nothing is sent twice.
+
+You need an Android phone with a folder-sync app, the Google Drive connector in Claude, and a routine in your inbox chat. Step-by-step guide (Dutch): [docs/automatische-inbox.md](docs/automatische-inbox.md).
+
 ## Limits
 
 - Only Claude Code sessions can receive screenshots. Regular claude.ai chats and Projects can't be messaged.
@@ -60,13 +66,15 @@ Start one session as your inbox, for example "Screenshot inbox", and pin it in t
 - From a video you only get what's visible in the frame.
 - Receipts reach the inbox chat as messages; you see them the next time you open it.
 - Chats that run on your own computer (Remote Control) only pick up a screenshot while that computer is on. The router checks this before sending and asks you what to do when such a chat is offline.
-- Nothing happens automatically when you take a screenshot. You share it into the inbox chat yourself.
+- Without automatic mode, nothing happens when you take a screenshot; you share it into the inbox chat yourself.
+- Give every chat that receives screenshots the same permission mode as the inbox chat. Otherwise an incoming message can wait for approval in the receiving chat and expire.
 
 ## Files
 
 | File | What it does |
 |---|---|
 | `.claude-plugin/` | Plugin and marketplace manifest |
+| `docs/automatische-inbox.md` | Setup guide for automatic mode (Dutch) |
 | `skills/screenshot-router/SKILL.md` | Reading, routing, the handoff message, receipts and bounces |
 | `skills/screenshot-router/routes.example.md` | Example routes; your own go in `.claude/screenshot-routes.md` |
 | `skills/screenshot-handler/SKILL.md` | How a receiving chat decides and reports back |

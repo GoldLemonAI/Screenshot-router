@@ -52,3 +52,8 @@ Client-specific chats. If the screenshot names one of these clients, it goes to 
 ## inbox
 - **session**: (none, handled in the router chat itself)
 - **takes**: anything that fits nowhere above, or a quick question you want answered right away.
+
+## drive-inbox
+Only needed for automatic mode (see `docs/automatische-inbox.md`). Delete this section if you share screenshots by hand.
+- **inbox folder**: REPLACE_WITH_DRIVE_FOLDER_ID
+- **done folder**: REPLACE_WITH_DRIVE_FOLDER_ID
