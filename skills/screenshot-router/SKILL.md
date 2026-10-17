@@ -34,7 +34,19 @@ A screenshot goes to exactly one chat. If it truly needs two, send it to the mai
 
 ## 3. Hand it over
 
-Get this chat's own session ID with `get_session` (no arguments) so the destination can send things back.
+Get this chat's own session ID with `get_session` (no arguments) so the destination can send things back. Load `get_session` and `send_message` from the claude-code-remote server first if they are not loaded yet.
+
+### Check that the chat is online
+
+Before sending, call `get_session` with the route's session ID and look at three fields:
+
+- `session_status` is `SESSION_STATUS_ARCHIVED`: the chat is gone. Do not send. Tell the user and offer to handle it here or start a new chat for that route.
+- `environment_kind` is `bridge` and `connection_status` is not `connected`: the chat runs on the user's own computer and that computer is off or Claude is not running there. The message would wait until it comes back online, possibly for days. Do not send silently. Ask the user with `AskUserQuestion`: send anyway (it waits until the computer is on), send to another route, or handle it here.
+- Anything else (a cloud chat, or a connected computer): send. A cloud chat starts up when the message arrives.
+
+Mention the check in your one-line confirmation when it mattered, for example "Sent to LinkedIn, but that chat is offline; it picks this up when your computer is on."
+
+### Send
 
 Load `send_message` from the claude-code-remote server and send the handoff below to the route's session. Keep the header line exactly as written; the receiving chat uses it to recognize a routed screenshot.
 
@@ -69,7 +81,7 @@ The router uses this to tell the user what happened.
 
 The handling paragraph is in the message on purpose: it works even if the destination chat does not have the `screenshot-handler` skill.
 
-If the session is archived or `send_message` fails, tell the user, name the route, and offer to handle it here or to start a new chat for that route with `create_session`. Do not pick a different route silently.
+If `send_message` fails, tell the user, name the route, and offer to handle it here or to start a new chat for that route with `create_session`. Do not pick a different route silently.
 
 ## 4. Tell the user
 

@@ -61,6 +61,7 @@ De skills zelf zijn in het Engels geschreven. Claude volgt ze ook als je in het 
 - De ontvangende chat krijgt een volledige uitwerking van de tekst, niet de afbeelding zelf. Dat werkt goed voor posts, e-mails en dashboards, en minder goed voor feedback op puur visueel ontwerp.
 - Van een video krijg je alleen wat in dat ene beeld te zien is.
 - Bevestigingen komen als berichten binnen in de inbox-chat; je ziet ze de volgende keer dat je die chat opent.
+- Chats die op je eigen computer draaien (Remote Control) pakken een screenshot pas op als die computer aan staat. De router controleert dat vóór het versturen en vraagt je wat je wilt als zo'n chat offline is.
 - Er gebeurt niets vanzelf als je een screenshot maakt. Je deelt hem zelf in de inbox-chat.
 
 ## Bestanden

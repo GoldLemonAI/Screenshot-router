@@ -59,6 +59,7 @@ Start one session as your inbox, for example "Screenshot inbox", and pin it in t
 - The destination chat gets a full transcription, not the image. That works well for posts, emails and dashboards and less well for purely visual design feedback.
 - From a video you only get what's visible in the frame.
 - Receipts reach the inbox chat as messages; you see them the next time you open it.
+- Chats that run on your own computer (Remote Control) only pick up a screenshot while that computer is on. The router checks this before sending and asks you what to do when such a chat is offline.
 - Nothing happens automatically when you take a screenshot. You share it into the inbox chat yourself.
 
 ## Files
