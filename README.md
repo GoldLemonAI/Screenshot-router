@@ -13,7 +13,7 @@ phone screenshot
       │  share into the inbox chat
       ▼
 screenshot-router ── reads the image, copies out all text,
-      │              picks one route from routes.md
+      │              picks one route from your routes file
       │  send_message
       ▼
 destination chat ── screenshot-handler decides:
@@ -23,7 +23,7 @@ destination chat ── screenshot-handler decides:
 ```
 
 1. **Read.** The router reads the screenshot and writes out everything on it: the source app, all visible text word for word, names, numbers and links. The destination chat only gets text, so this has to be complete.
-2. **Route.** It compares the screenshot with `routes.md`, a short list of your chats and what each one takes. Client names win first. Then the topic counts, not the app: an Instagram reel about SEO goes to the SEO chat. If it can't decide between two, it asks you once.
+2. **Route.** It compares the screenshot with your routes file, a short list of your chats and what each one takes. Client names win first. Then the topic counts, not the app: an Instagram reel about SEO goes to the SEO chat. If it can't decide between two, it asks you once.
 3. **Hand over.** It sends a fixed message to that chat with `send_message`. The handling rules are written into that message, so it also works for chats that don't have the handler skill.
 4. **Decide.** The receiving chat picks one of four outcomes:
    - **Act now:** work it can undo, such as analysis, drafts, notes or plan updates.
@@ -36,10 +36,22 @@ destination chat ── screenshot-handler decides:
 
 You need Claude Code on the web (claude.ai/code) with the claude-code-remote tools (`send_message`, `get_session`), which cloud sessions have.
 
-1. Copy the `.claude/skills/` folder into the repository your Claude Code sessions run on, and merge it to the default branch so new sessions load it.
-2. Open `.claude/skills/screenshot-router/routes.md` and replace the example routes with your own chats and their session IDs. The **takes** and **not** lines matter most, so write them concretely.
-3. Start one session as your inbox, for example "Screenshot inbox", and pin it in the Claude app on your phone.
-4. Share a screenshot from your phone into that chat. No text needed; add a note if you want something specific.
+**1. Install the plugin**
+
+```
+/plugin marketplace add GoldLemonAI/Screenshot-router
+/plugin install screenshot-router@goldlemon
+```
+
+Or copy the two folders in `skills/` into `.claude/skills/` in your own repository, and merge that to the default branch so new sessions load them.
+
+**2. Add your routes**
+
+Copy `skills/screenshot-router/routes.example.md` to `.claude/screenshot-routes.md` in the repository your sessions run on, and replace the examples with your own chats and their session IDs. The **takes** and **not** lines matter most, so write them concretely. You can also just send a screenshot: if no routes file exists, the router offers to draft one from your open sessions.
+
+**3. Make an inbox**
+
+Start one session as your inbox, for example "Screenshot inbox", and pin it in the Claude app on your phone. Share a screenshot from your phone into that chat. No text needed; add a note if you want something specific.
 
 ## Limits
 
@@ -53,9 +65,10 @@ You need Claude Code on the web (claude.ai/code) with the claude-code-remote too
 
 | File | What it does |
 |---|---|
-| `.claude/skills/screenshot-router/SKILL.md` | Reading, routing, the handoff message, receipts and bounces |
-| `.claude/skills/screenshot-router/routes.md` | Your chats and what each one takes |
-| `.claude/skills/screenshot-handler/SKILL.md` | How a receiving chat decides and reports back |
+| `.claude-plugin/` | Plugin and marketplace manifest |
+| `skills/screenshot-router/SKILL.md` | Reading, routing, the handoff message, receipts and bounces |
+| `skills/screenshot-router/routes.example.md` | Example routes; your own go in `.claude/screenshot-routes.md` |
+| `skills/screenshot-handler/SKILL.md` | How a receiving chat decides and reports back |
 
 ## License
 

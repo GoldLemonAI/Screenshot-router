@@ -1,4 +1,6 @@
-# Screenshot routes
+# Screenshot routes (example)
+
+Copy this file to `.claude/screenshot-routes.md` in your own project and fill it in. The router reads that copy first.
 
 Each route is one Claude Code session that can receive a screenshot. The router reads this file every time, so edit it whenever you start, rename or archive a chat.
 

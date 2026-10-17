@@ -1,6 +1,6 @@
 ---
 name: screenshot-router
-description: Route a phone screenshot to the right Claude Code chat. Use when the user sends an image with little or no text in the screenshot inbox chat, or says "route this", "where does this go", or "send this to the right chat". Reads the screenshot, picks one destination from routes.md, and hands it over with send_message so that chat decides what to do.
+description: Route a phone screenshot to the right Claude Code chat. Use when the user sends an image with little or no text in the screenshot inbox chat, or says "route this", "where does this go", or "send this to the right chat". Reads the screenshot, picks one destination from the routes file, and hands it over with send_message so that chat decides what to do.
 ---
 
 # Screenshot router
@@ -19,7 +19,10 @@ Look at the image and write down, for yourself:
 
 ## 2. Pick one route
 
-Read `routes.md` in this folder. It lists every destination chat with what it takes and what it does not take.
+Read the routes file. It lists every destination chat with what it takes and what it does not take. Look for it in this order:
+
+1. `.claude/screenshot-routes.md` in the project this session runs on. This is the user's own file.
+2. `routes.example.md` next to this skill. This only holds examples. If you end up here, tell the user to copy it to `.claude/screenshot-routes.md` and fill in their own chats, and offer to do it with them: list their sessions with `list_sessions` and draft a route for each active one.
 
 1. If the screenshot names a client from the `clients` table, send it to that client's chat.
 2. Otherwise compare against each route's **takes** and **not** lines and pick the best fit.
@@ -84,6 +87,6 @@ When the user asks "is this working?" or "what happened with my screenshots?", l
 
 When a message starting with `[Bounced screenshot]` arrives, re-route it using the reason given, and never send it back to the chat that bounced it. If no other route fits, handle it here and tell the user.
 
-## Keeping routes.md current
+## Keeping the routes current
 
-If the user says "new route", "this chat is gone" or similar, edit `routes.md`, commit, and push. When a send fails because a session is archived, suggest removing or replacing that route.
+If the user says "new route", "this chat is gone" or similar, edit `.claude/screenshot-routes.md`, commit, and push. When a send fails because a session is archived, suggest removing or replacing that route.

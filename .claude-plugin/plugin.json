@@ -1,0 +1,13 @@
+{
+  "name": "screenshot-router",
+  "description": "Share a phone screenshot into one Claude Code chat; it lands in the chat that should handle it, and that chat decides what to do.",
+  "version": "1.0.0",
+  "author": {
+    "name": "GoldLemon",
+    "url": "https://www.goldlemon.nl"
+  },
+  "homepage": "https://github.com/GoldLemonAI/Screenshot-router",
+  "repository": "https://github.com/GoldLemonAI/Screenshot-router",
+  "license": "MIT",
+  "keywords": ["screenshots", "routing", "agents", "inbox", "productivity"]
+}

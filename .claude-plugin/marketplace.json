@@ -1,0 +1,14 @@
+{
+  "name": "goldlemon",
+  "owner": {
+    "name": "GoldLemon",
+    "url": "https://www.goldlemon.nl"
+  },
+  "plugins": [
+    {
+      "name": "screenshot-router",
+      "source": "./",
+      "description": "Share a phone screenshot into one Claude Code chat; it lands in the chat that should handle it, and that chat decides what to do."
+    }
+  ]
+}
