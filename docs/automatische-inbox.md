@@ -83,7 +83,8 @@ Per ronde gaan er hooguit 10 screenshots door; de rest volgt in de ronde erna.
 Dit is de stap die het vaakst misgaat.
 
 - **Chats op je eigen computer** (Remote Control) pakken een bericht alleen op als die computer aan staat en Claude daar draait. Staat hij uit, dan wacht het bericht. De router meldt dat in de samenvatting.
-- **Permissiemodus.** Als de inbox-chat en de ontvangende chat een andere permissiemodus hebben, moet je een binnenkomend bericht in de ontvangende chat soms eerst goedkeuren. Doe je dat niet, dan kan het bericht verlopen. Zet alle chats die screenshots ontvangen op dezelfde permissiemodus als je inbox-chat.
+- **Permissiemodus.** Hebben de inbox-chat en de ontvangende chat een andere permissiemodus, dan wordt een binnenkomend bericht tegengehouden tot je het in de ontvangende chat goedkeurt. Keur je het niet op tijd goed, dan vervalt het en komt het nooit aan. Opnieuw sturen helpt niet zolang de modi verschillen. Zet daarom de inbox-chat en alle chats die screenshots ontvangen op **dezelfde** modus. Je ziet en wijzigt de modus onder het invoerveld van elke chat.
+  - Kies liever **auto** dan **bypass permissions**. De inbox leest tekst van willekeurige screenshots, en daar kan tekst in staan die probeert een agent iets te laten doen. In auto-modus controleert Claude riskante acties nog; in bypass gebeurt alles zonder controle.
 
 ## Stap 6: test het hele pad
 
@@ -101,6 +102,7 @@ Dit is de stap die het vaakst misgaat.
 | "Geen nieuwe screenshots" terwijl er wel een staat | Verkeerde map-ID in het routebestand | Controleer de ID's uit stap 1 en 2 |
 | Router zegt dat de Drive-connector ontbreekt | Connector niet aan voor de inbox-chat | Zet Google Drive aan bij de connectors van claude.ai |
 | Bericht verstuurd, maar de chat doet niets | Computer uit, of bericht wacht op goedkeuring | Zet je computer aan; gebruik overal dezelfde permissiemodus (stap 5) |
+| In de ontvangende chat staat "not approved before expiry" | Permissiemodi verschillen | Zelfde modus in alle chats (stap 5), daarna opnieuw sturen |
 | Screenshots verdwijnen van je telefoon | Sync-app staat op tweerichtingen | Zet de koppeling op "alleen uploaden" |
 
 ## iPhone
