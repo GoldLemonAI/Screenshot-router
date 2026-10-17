@@ -1,5 +1,7 @@
 # Screenshot router for Claude Code
 
+[Nederlands](README.nl.md)
+
 Take a screenshot on your phone, share it into one Claude chat, and it ends up in the chat that should deal with it. That chat then decides what to do.
 
 I run a marketing agency with a separate Claude Code chat for each job: LinkedIn, SEO, the website, outreach, each client. I kept taking screenshots of posts, reels and emails and then never opening them again, because I first had to work out which chat they belonged in. This fixes that.
